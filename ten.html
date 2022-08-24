@@ -5,11 +5,11 @@
         <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
         <script type="text/babel">
             const className = 'container';
-            const message = (props) => <div className="message"> {props.msg} </div>
+            const Message = (props) => <div className="message"> {props.msg} </div>
             const element = (
                 <div className={className}>
-                    {message({msg : "Hello world"})}
-                    {message({msg : "GoodBye world"})}
+                    <Message msg="Hello World" />
+                    <Message msg="Goodbye World" />
                 </div>
             );
             const rootElement = document.getElementById("root");

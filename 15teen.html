@@ -1,0 +1,32 @@
+<body>
+    <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            const hello = 'Hello' ; 
+            const world = 'World' ; 
+            const className = 'container';
+            function CharactersCount({text})
+            {
+                const length = text.length ? text.length : "NO" ; 
+                return (
+                    <div>   
+                    {`the text ${text} has `} 
+                    {text.length ? <strong>{text.length}</strong> : "no"} 
+                    {' characters' }
+                    </div>
+                ) ; 
+            }
+            const element = (
+                <>
+                    <CharactersCount text={hello}/>    
+                    <CharactersCount text={world}/>    
+                    <CharactersCount text={""}/>    
+                </>
+            );
+            const rootElement = document.getElementById("root");
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(element);
+        </script>
+</body>

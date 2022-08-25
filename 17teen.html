@@ -1,0 +1,50 @@
+<body>
+    <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <style>
+            .box {
+              border: 1px solid #333;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              text-align: center;
+            }
+            .box--large {
+              width: 270px;
+              height: 270px;
+            }
+            .box--medium {
+              width: 180px;
+              height: 180px;
+            }
+            .box--small {
+              width: 90px;
+              height: 90px;
+            }
+          </style>
+        
+        <script type="text/babel">
+            const rootElement = document.getElementById("root");
+
+            function Box({size='small',color='lightgreen',style,...rest})
+            {
+                return <div className={`box box--${size}`} style={{backgroundColor : color,...style}} {...rest}/>
+            }
+            const element = (
+            <>
+                <Box size="small" color="pink" style={{fontStyle : 'italic'}} >
+                    this is italic
+                </Box>
+                <Box size="medium" color="lightblue"/>
+                <Box size="large" color="orange" />
+
+            </>
+
+            )
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(element);
+        
+        </script>
+</body>

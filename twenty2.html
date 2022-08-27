@@ -6,17 +6,23 @@
         <script type="text/babel">
 
             const { useState, useEffect } = React ;
-            const Greeting = () => {
-
-                const [name,setName] = useState(() => 
-                
-                    window.localStorage.getItem('name') || ''
+            function useLocalStorageState(key,defaultValue='')
+            {
+                const [state,setState] = useState(() => 
+            
+                    window.localStorage.getItem(key) ||defaultValue
                 ,); 
 
                 useEffect(() => {
-                    window.localStorage.setItem('name',name) 
-                },[name]);
+                    window.localStorage.setItem(key,state)
+                },[key,state])
                 
+                return [state,setState]
+            }
+            const Greeting = () => {
+
+                const [name,setName] = useLocalStorageState('name');
+
                 const handleChange = (event) => setName(event.target.value);
                 return (
                     <div>

@@ -1,0 +1,41 @@
+<body>
+    <div id="root"></div>
+        <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <script type="text/babel">
+            const {useState, useEffect, useRef } = React ;
+            const UsernameForm =  () => {
+                const [name,setName] = useState("") ; 
+                const nameInputRef = useRef(); 
+
+                const handleSubmit = (event) => {
+                    event.preventDefault();
+                    const nameInput = nameInputRef.current.value ; 
+                    setName(nameInput) ;
+                    alert(`submitted ${name}`);
+                }
+
+                const handleOnChange = (event) => setName(event.target.value);
+                
+
+                useEffect(()=>{
+                    console.log("name has changed");
+                },[name])
+                return (
+                    <><form onSubmit={handleSubmit}>
+                        <label htmlFor="name"/>
+                        <input ref={nameInputRef} id="name" onChange={handleOnChange}/>
+                        <button type="submit" >submit</button>
+                    </form> 
+                   {name ? <strong>Hello {name} </strong> : "Please type your name"} </>
+
+                );
+
+            }
+            const rootElement = document.getElementById("root");
+            const root = ReactDOM.createRoot(rootElement);
+            root.render(<UsernameForm/>);
+
+        </script>
+</body> 

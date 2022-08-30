@@ -13,13 +13,18 @@
                     setName(event.target[0].value) ;
                 }
 
+                const handleOnChange = (event) => {
+                    setName(event.target.value);
+                    console.log(name + " is changing ")
+                }
+
                 useEffect(()=>{
                     console.log("name has changed");
                 },[name])
                 return (
                     <><form onSubmit={handleSubmit}>
                         <label htmlFor="name"/>
-                        <input id="name" />
+                        <input id="name" onChange={handleOnChange}/>
                         <input type="submit" value="Submit" />
                     </form> 
                    {name ? <strong>Hello {name} </strong> : "Please type your name"} </>

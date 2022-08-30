@@ -17,7 +17,7 @@
                 }
 
                 const handleOnChange = (event) => {
-                    setName(event.target.value);
+                    setName(event.target.value.toLowerCase());
                     
                 }
                 
@@ -28,7 +28,7 @@
                 return (
                     <><form onSubmit={handleSubmit}>
                         <label htmlFor="name"/>
-                        <input id="name" onChange={handleOnChange}/>
+                        <input id="name" value={name} onChange={handleOnChange}/>
                         <button disabled={Boolean(error)} type="submit" >submit</button>
                     </form> 
                     <div style={{color :'red'}}>{error} </div>

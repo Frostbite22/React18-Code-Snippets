@@ -7,8 +7,6 @@
             const {useState, useEffect, useRef } = React ;
             const UsernameForm =  () => {
                 const [name,setName] = useState("") ; 
-                const isLowerCase = name === name.toLowerCase() ;
-                const error = isLowerCase ? null : 'Username must be lowercase' ;
                 const handleSubmit = (event) => {
                     event.preventDefault();
                     const nameInput = event.target.elements.name.value ; 
@@ -17,7 +15,7 @@
                 }
 
                 const handleOnChange = (event) => {
-                    setName(event.target.value);
+                    setName(event.target.value.toLowerCase());
                     
                 }
                 
@@ -28,10 +26,9 @@
                 return (
                     <><form onSubmit={handleSubmit}>
                         <label htmlFor="name"/>
-                        <input id="name" onChange={handleOnChange}/>
-                        <button disabled={Boolean(error)} type="submit" >submit</button>
+                        <input id="name" value={name} onChange={handleOnChange}/>
+                        <button  type="submit" >submit</button>
                     </form> 
-                    <div style={{color :'red'}}>{error} </div>
                    {name ? <strong>Hello {name} </strong> : "Please type your name"} </>
 
                 );
